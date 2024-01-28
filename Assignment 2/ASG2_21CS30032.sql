@@ -257,10 +257,18 @@ INSERT INTO manages(s_id,e_id) VALUES('21CS10014',8);
 
 -- Queries
 -- a)
-SELECT student.roll, student.name from student,manages,event where student.roll=manages.s_id and manages.e_id=event.e_id and event.name='Megaevent';
+SELECT student.roll ,student.name from student
+join manages on student.roll = manages.s_id
+join event on manages.e_id = event.e_id
+where event.name = 'Megaevent';
 
 -- b)
-SELECT student.roll,student.name from student,manages,event,has_role,role where student.roll = manages.s_id and manages.e_id=event.e_id and event.name='Megaevent' and student.roll = has_role.s_id and has_role.r_id=role.r_id and role.name='Secretary';
+SELECT student.roll,student.name from student
+join manages on student.roll = manages.s_id
+join event on manages.e_id = event.e_id
+join has_role on student.roll = has_role.s_id
+join role on has_role.r_id = role.r_id
+where event.name = 'Megaevent' and role.name = 'Secretary';
 
 -- c)
 SELECT name from participant as T where T.p_id in
