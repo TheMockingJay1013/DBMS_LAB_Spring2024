@@ -1,3 +1,7 @@
+-- to drop all the tables : drop owned by "21CS30032!";
+-- to run .sql script in psql : \i <path to file>
+
+
 CREATE table college(
 c_id SERIAL PRIMARY KEY,
 name VARCHAR(50),
