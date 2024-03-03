@@ -192,7 +192,7 @@ INSERT INTO has_part(e_id,p_id) VALUES(1,8);
 
 
 CREATE table has_role(
-s_id VARCHAR REFERENCES student(roll),
+s_id VARCHAR(50) REFERENCES student(roll),
 r_id INTEGER REFERENCES role(r_id)
 );
 
@@ -225,11 +225,10 @@ INSERT INTO has_role(s_id,r_id) VALUES('21CS10024',8);
 
 
 CREATE table manages(
-s_id VARCHAR REFERENCES student(roll),
+s_id VARCHAR(50) REFERENCES student(roll),
 e_id INTEGER REFERENCES event(e_id)
 );
 
---assign random students to manage events
 INSERT INTO manages(s_id,e_id) VALUES('21CS10001',1);
 INSERT INTO manages(s_id,e_id) VALUES('21CS10021',2);
 INSERT INTO manages(s_id,e_id) VALUES('21CS10003',3);
@@ -298,8 +297,7 @@ select student.name from student,volunteer,has_vol,event where student.roll = vo
 select event.name from event,volunteer,has_vol,student where event.e_id = has_vol.e_id and has_vol.v_id = volunteer.v_id and volunteer.roll = student.roll and student.department ='CSE' ;
 
 -- h)
-select college.name , count(participant.p_id) from 
-college
+select college.name , count(participant.p_id) from college
 join participant on college.c_id = participant.college_id
 join has_part on participant.p_id = has_part.p_id
 join event on has_part.e_id = event.e_id
